@@ -79,12 +79,38 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      //create a variable and set it equal to row based on the rowIndex
+      //create a variable called sum to keep track
+      //iterate through the row
+        //if column (row of i) is equal to 1 then increase sum by 1
+      //if sum is more than 1 then return true
+
+      var row = this.get(rowIndex);
+      var sum = 0;
+
+      for (var i = 0; i < row.length; i++) {
+        if (row[i]) {
+          sum++
+        };
+      }
+      return sum > 1; // fixme
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      return false; // fixme
+      //get the size of matrix
+      //loop through the matrix
+        //check if any rows have conflicts
+          //if true then increase sum by 1
+      //if sum is more than 1 then return true
+      var sum = 0;
+      
+      for( var i = 0; i < this.get('n'); i++){
+        if(this.hasRowConflictAt(i)){
+          sum++;
+        }
+      }
+      return sum > 0; // fixme
     },
 
 
@@ -94,12 +120,32 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      //get size of matrix
+      //loop through matrix
+      //check if matrix[i][colIndex] === 1, increment sum
+      //if sum > 1 return true
+      
+      var size = this.get('n');
+      var sum = 0;
+
+      for (var i = 0; i < size; i++) {
+        if (this.get(i)[colIndex]) {
+          sum++;
+        }
+      }
+      return sum > 1; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      return false; // fixme
+      var sum = 0;
+
+      for (var i = 0; i < this.get('n'); i++) {
+        if (this.hasColConflictAt(i)) {
+          sum++;
+        }
+      }
+      return sum > 0; // fixme
     },
 
 
@@ -109,12 +155,39 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      //create var colIndex (equal to input)
+      //get row using this.get('n')
+      //loop through the row
+      //check if row[colIndex] === 1
+        //if === 1, increment sum
+      //increment colIndex
+      //if sum > 1 return true
+
+      var colIndex = majorDiagonalColumnIndexAtFirstRow;
+      var sum = 0;
+      var size = this.get('n');
+      for (var i = 0; i < size; i++) {
+        var row = this.get(i);
+        if (row[colIndex]) {
+          sum++;
+        }
+        colIndex++;
+      }
+      return sum > 1; // fixme
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      var sum = 0;
+      var size = this.get('n');
+  
+      for (var i = 0 - size; i < size; i++) {
+
+        if(this.hasMajorDiagonalConflictAt(i)) {
+          sum++;
+        }
+      }
+      return sum > 0; // fixme
     },
 
 
@@ -124,12 +197,33 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      var colIndex = minorDiagonalColumnIndexAtFirstRow;
+      var sum = 0;
+      var size = this.get('n');
+
+      for (var i = 0; i < size; i++) {
+        var row = this.get(i);
+
+        if (row[colIndex]) {
+          sum++;
+        }
+        colIndex--;
+      }
+
+      return sum > 1; // fixme
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return false; // fixme
+      var sum = 0;
+      var size = this.get('n');
+
+      for (var i = size + size; i >= 0; i--) {
+        if(this.hasMinorDiagonalConflictAt(i)) {
+          sum++;
+        }
+      }
+      return sum > 0; // fixme
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
